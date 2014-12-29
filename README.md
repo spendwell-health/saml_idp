@@ -33,7 +33,8 @@ posting to `saml_acs_url` the parameter `SAMLResponse` with the return value fro
 Add to your `routes.rb` file, for example:
 
 ``` ruby
-get '/saml/auth' => 'saml_idp#new'
+get '/saml/auth' => 'saml_idp#new' # HTTP-Redirect binding
+post '/saml/POST' => 'saml_idp#post' # HTTP-POST binding - special handling required
 get '/saml/metadata' => 'saml_idp#show'
 post '/saml/auth' => 'saml_idp#create'
 ```
@@ -82,7 +83,8 @@ CERT
   # config.base_saml_location = "#{base}/saml"
   # config.reference_id_generator                   # Default: -> { UUID.generate }
   # config.attribute_service_location = "#{base}/saml/attributes"
-  # config.single_service_post_location = "#{base}/saml/auth"
+  # config.single_service_redirect_location = "#{base}/saml/auth"
+  # config.single_service_post_location = "#{base}/saml/POST"
 
   # Principal is passed in when you `encode_response`
   #

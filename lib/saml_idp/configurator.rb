@@ -12,6 +12,7 @@ module SamlIdp
     attr_accessor :entity_id
     attr_accessor :reference_id_generator
     attr_accessor :attribute_service_location
+    attr_accessor :single_service_redirect_location
     attr_accessor :single_service_post_location
     attr_accessor :attributes
     attr_accessor :service_provider

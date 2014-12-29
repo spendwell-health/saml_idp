@@ -26,6 +26,8 @@ module SamlIdp
               build_key_descriptor descriptor
               build_name_id_formats descriptor
               descriptor.SingleSignOnService Binding: "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect",
+                Location: single_service_redirect_location
+              descriptor.SingleSignOnService Binding: "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST",
                 Location: single_service_post_location
               build_attribute descriptor
             end
@@ -145,6 +147,7 @@ module SamlIdp
       organization_name
       organization_url
       attribute_service_location
+      single_service_redirect_location
       single_service_post_location
       technical_contact
     ].each do |delegatable|
