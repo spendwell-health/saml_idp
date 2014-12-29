@@ -28,8 +28,12 @@ module SamlIdp
     end
 
     def assertion_consumer_service_url( binding = "HTTP-POST" )
-      attributes[:assertion_consumer_services].
-        select {|acs| acs[:binding] == binding }.first[:location]
+      if( attributes[:assertion_consumer_services] )
+        return attributes[:assertion_consumer_services].
+          select {|acs| acs[:binding] == binding }.first[:location]
+      else
+        return nil
+      end
     end
 
     def refresh_metadata
