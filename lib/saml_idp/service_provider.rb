@@ -27,6 +27,11 @@ module SamlIdp
         current_metadata.respond_to?(:sign_assertions?) && current_metadata.sign_assertions?
     end
 
+    def assertion_consumer_service_url( binding = "HTTP-POST" )
+      attributes[:assertion_consumer_services].
+        select {|acs| acs[:binding] == binding }.first[:location]
+    end
+
     def refresh_metadata
       fresh = fresh_incoming_metadata
       if valid_signature?(fresh.document)
